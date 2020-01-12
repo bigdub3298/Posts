@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
-import faker from "faker";
 
 export class PostList extends Component {
   renderList() {
     return this.props.posts.map(post => {
       return (
         <div className="item" key={post.id}>
-          <img
-            src={faker.image.avatar()}
-            alt="user avatar"
-            className="ui image"
-          />
+          <i className="large middle aligned icon user"></i>
           <div className="content">
-            <div className="header">{post.title}</div>
+            <h3 className="header">{post.title}</h3>
             <div className="description">{post.body}</div>
           </div>
         </div>
