@@ -11,3 +11,15 @@ export const fetchUser = id => async dispatch => {
 
   dispatch({ type: "FETCH_USER", payload: response.data });
 };
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  await dispatch(fetchPosts());
+
+  const posts = getState().posts;
+
+  const userIds = Array.from(new Set(posts.map(post => post.userId)));
+
+  for (let id of userIds) {
+    dispatch(fetchUser(id));
+  }
+};
